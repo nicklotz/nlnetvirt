@@ -32,6 +32,7 @@ jobs:
           tags: ghcr.io/nicklotz/chatapp:${{ github.sha }}
 
   check:
+    needs: build-and-push
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/nicklotz/chatapp:${{ github.sha }}
