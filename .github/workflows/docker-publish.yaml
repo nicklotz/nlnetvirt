@@ -39,5 +39,6 @@ jobs:
     steps:
       - name: check
         run: |
+          pwd
           ls -l
 
