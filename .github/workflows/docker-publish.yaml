@@ -31,3 +31,10 @@ jobs:
           push: true
           tags: ghcr.io/nicklotz/chatapp:${{ github.sha }}
 
+  check:
+    runs-on: ghcr.io/nicklotz/chatapp:${{ github.sha }}
+    steps:
+      - name: check
+        run: |
+          ls -l
+
