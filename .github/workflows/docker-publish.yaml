@@ -26,5 +26,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/chatapp:${{ github.sha }}
+          tags: ghcr.io/nicklotz/chatapp:${{ github.sha }}
 
