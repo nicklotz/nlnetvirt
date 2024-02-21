@@ -40,5 +40,6 @@ jobs:
       - name: check
         run: |
           pwd
-          ls -l
+          cd chatapp/
+          cat server.py
 
