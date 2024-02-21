@@ -39,5 +39,5 @@ jobs:
     steps:
       - name: check
         run: |
-          cat server.py
+          cat server.py # Check existence of server.py file
 
