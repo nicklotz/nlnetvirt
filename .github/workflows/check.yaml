@@ -16,4 +16,4 @@ jobs:
       - name: check
         run: |
           cd 01-refresher-on-osi-model/
-          cat server.py
+          python server.py
