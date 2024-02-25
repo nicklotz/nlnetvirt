@@ -1,25 +1,6 @@
 import socket
 import threading
-
-# Function to handle client connections
-def handle_client(client_socket):
-    while True:
-        try:
-            # Receive message from the client
-            message = client_socket.recv(1024)
-            if not message:
-                break
-
-            # Print the received message
-            print(f"Received: {message.decode()}")
-
-            # You can add more functionality here (like responding back to client)
-
-        except ConnectionResetError:
-            break
-
-    # Close the connection when done
-    client_socket.close()
+from handle_client import *
 
 def start_server(host='127.0.0.1', port=65432):
     # Create a socket object using IPv4 and TCP protocol
@@ -43,7 +24,7 @@ def start_server(host='127.0.0.1', port=65432):
         client_thread.start()
 
         # Print the number of active connections
-        print(f"Active connections: {threading.activeCount() - 1}")
+        print(f"Active connections: {threading.active_count() - 1}")
 
 if __name__ == "__main__":
     start_server()
