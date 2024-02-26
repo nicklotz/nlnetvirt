@@ -4,7 +4,7 @@ import base64
 import json
 import time
 
-def decode_print(message):
+def print_decoded(message):
     message_obj = json.loads(message.decode())
     decoded_message = base64.b64decode(message_obj['message']).decode()
 
@@ -31,7 +31,7 @@ def handle_client(client_socket):
             if not message:
                 break
 
-            decode_print(message)
+            print_decoded(message)
         
         except (ConnectionResetError, json.JSONDecodeError, base64.binascii.Error) as err:
             if handle_exception(err):
