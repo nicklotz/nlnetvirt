@@ -1,31 +1,3 @@
-# Domain Name System (DNS)
-## Live Demo: Namecheap or Route53
-
-# Intra-domain & Inter-domain Routing
-## Interior Gateway Protocol (IGP)
-## Border Gateway Protocol (BGP)
-## Terms explained: egress/ingress, inbound/outbound,AS, others.
-
-# Introduction to SDN
-## Need for Active Networks
-### Protocols
-#### Northbound protocol
-#### East/West-bound protocol
-#### Southbound protocol.
-
-# What is OpenFlow?
-## Relation with SDN
-## Southbound Protocol
-### Control / Data Plane Separation
-### Challenges in separating Control & data separation
-## Hands-on: Setup mininet with VirtualBox & Vagrant
-
-# Mininet Topologies
-## CLI Options
-### Host, switches & controller
-## Generating complicated topologies
-### Demo: Interacting with Python
-
 # Routing Control Platform
 ## Introduction to ONIX Controllers
 
