@@ -17,16 +17,21 @@ sudo apt update && sudo apt install vagrant
 # Configure mininet vagrant box
 mkdir mininet-vm
 cd mininet-vm
-vagrant init ubuntu/bionic64
+vagrant init ubuntu/jammy64
 
 # Add/modify Vagrantfile
 config.vm.provider "virtualbox" do |vb|
   vb.memory = "1024"
   vb.cpus = 2
 end
+
+# Installing mininet with apt
 config.vm.provision "shell", inline: <<-SHELL
-  sudo apt-get update
-  sudo apt-get install -y mininet
+  git clone https://github.com/mininet/mininet
+  cd mininet
+  git checkout -b mininet-2.3.1b4 2.3.1b4  # or whatever version you wish to install
+  cd ..
+  mininet/util/install.sh -a
 SHELL
 
 # Start and Connect to vagrnat
