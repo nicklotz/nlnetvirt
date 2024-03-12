@@ -5,10 +5,6 @@
 - Pox (should come with Mininet)
 - Python
 
-## Set up Mininet network
-### A. Start Mininet with a Custom Topology
-1. Create a simple network topology with one switch and three hosts. This setup can be done directly from the Mininet CLI. Open a terminal and run the following command.
-
 ```
 sudo mn --topo single,3 --mac --switch ovsk --controller remote
 ```
