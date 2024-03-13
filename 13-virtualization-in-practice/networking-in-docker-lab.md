@@ -75,13 +75,14 @@ docker run -dit --name nginx3 nginx
 7. Connect the new container to your existing custom network.
 
 ```
-docker network connect mybridgetnet nginx3
+docker network connect mybridgenet nginx3
 ```
 
 8. Save the IP address of the third container.
 
 ```
-NGINX3_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx3`
+NGINX3_IP=`docker inspect nginx3 -f '{{.NetworkSettings.Networks.mybridgenet.IPAddress}}'`
+echo $NGINX3_IP
 ```
 
 9. Test connectivity to nginx3 from another container.
