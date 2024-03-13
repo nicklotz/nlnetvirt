@@ -143,6 +143,10 @@ docker exec linkednginx curl http://$NGINXPUB_IP
 
 5. Initialize Docker swarm and create an overlay network. This only becomes truly useful when you are managing a cluster of Docker daemons on multiple hosts, but we can practice a couple of commands here.
 
+```
+docker swarm init
+```
+
 6. Create an overlay network.
 
 ```
@@ -160,7 +164,7 @@ By deploying a service to an overlay network, it can communicate across multiple
 8. Clean up resources.
 
 ```
-docker service rm myservice
+docker service rm mywebervice
 docker container stop linkednginx nginxpublic
 docker container rm linkednginx nginxpublic
 docker network rm myoverlaynet
