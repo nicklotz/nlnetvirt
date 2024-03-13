@@ -34,20 +34,20 @@ Let your instructor know if you get a permissions error and/or are unable to run
 1. Create a custom bridge network. These are isolated on a single host.
 
 ```
-docker network create --driver bridge my-bridge-network
+docker network create --driver bridge mybridgenet
 ```
 
-2. Create two NGINX containeres on the **my-bridge-net** network.
+2. Create two NGINX containeres on the **mybridgenet** network.
 
 ```
-docker run -dit --name nginx1 --network my-bridge-network nginx
-docker run -dit --name nginx2 --network my-bridge-network nginx
+docker run -dit --name nginx1 --network mybridgenet nginx
+docker run -dit --name nginx2 --network mybridgetnet nginx
 ```
 
 3. Inspect the new network with containers attached.
 
 ```
-docker network inspect my-bridge-network
+docker network inspect mybridgenet
 ```
 
 4. Save the IP addresses of both containers.
@@ -75,7 +75,7 @@ docker run -dit --name nginx3 nginx
 7. Connect the new container to your existing custom network.
 
 ```
-docker network connect my-bridge-network nginx3
+docker network connect mybridgetnet nginx3
 ```
 
 8. Save the IP address of the third container.
@@ -93,7 +93,7 @@ docker exec nginx1 curl http://$NGINX3_IP
 10. Disconnect nginx3 from your custom network.
 
 ```
-docker network disconnect my-bridge-network nginx3 
+docker network disconnect mybridgenet nginx3 
 ```
 
 11. Try communicating with nginx3 again. Does it work?
@@ -107,7 +107,7 @@ docker exec nginx1 curl http://$NGINX3_IP
 ```
 docker container stop nginx1 nginx2 nginx3
 docker container rm nginx1 nginx2 nginx3
-docker network rm my-bridge-network
+docker network rm mybridgenet
 ```
 
 
