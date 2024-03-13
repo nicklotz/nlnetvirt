@@ -1,5 +1,5 @@
 # Refresher on ISO Open Systems Interconnection (OSI)model
-- Models crucial to understandinf network virtualization: the ISO Open Systems Interconnection (OSI) model and the TCP model, starting with the Application Layer 
+- Models crucial to understanding network virtualization: the ISO Open Systems Interconnection (OSI) model and the TCP model, starting with the Application Layer 
 - Topic is essential for grasping how different layers of network architecture interact and support the virtual networks we rely on today
 - Start with a quick refresher on the OSI model
   - Conceptual framework used to understand network interactions in seven distinct layers
