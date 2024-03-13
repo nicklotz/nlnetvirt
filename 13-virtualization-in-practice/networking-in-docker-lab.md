@@ -103,6 +103,8 @@ docker network disconnect mybridgenet nginx3
 docker exec nginx1 curl http://$NGINX3_IP
 ```
 
+12. The connection attempt should hang. Type **CTRL-C** to kill the connection attempt.
+
 12. Clean up the resources you've created so far.
 
 ```
