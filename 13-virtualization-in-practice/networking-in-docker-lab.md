@@ -41,7 +41,7 @@ docker network create --driver bridge mybridgenet
 
 ```
 docker run -dit --name nginx1 --network mybridgenet nginx
-docker run -dit --name nginx2 --network mybridgetnet nginx
+docker run -dit --name nginx2 --network mybridgenet nginx
 ```
 
 3. Inspect the new network with containers attached.
