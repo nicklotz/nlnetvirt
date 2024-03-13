@@ -113,6 +113,61 @@ docker container rm nginx1 nginx2 nginx3
 docker network rm mybridgenet
 ```
 
+## C. Expose and link containers
+
+1. Run a new NGINX container with port 80 exposed to port 8080 on localhost.
+
+```
+docker run -d --name nginxpublic -p 8080:80 nginx
+```
+
+2. Test accessibility by navigating to **https://localhost:8080** in your web browser or by using curl.
+
+```
+curl http://localhost:8080
+```
+
+3. Test container linking. This is a direct connection between two containers that may not be on the same network. We see this often when performing "lift and shifts" of legacy applications.
+
+
+```
+docker run -d --name linkednginx --link nginxpublic:nginxpub nginx
+```
+
+4. Verify connectivity between the two linked containers.
+
+```
+NGINXPUB_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginxpublic`
+docker exec linkednginx curl http://$NGINXPUB_IP
+```
+
+5. Initialize Docker swarm and create an overlay network. This only becomes truly useful when you are managing a cluster of Docker daemons on multiple hosts, but we can practice a couple of commands here.
+
+6. Create an overlay network.
+
+```
+docker network create -d overlay myoverlaynet
+```
+
+7. Deploy an NGINX service to the overlay network.
+
+```
+docker service create --name mywebservice --network myoverlaynet nginx
+```
+
+By deploying a service to an overlay network, it can communicate across multiple hosts within the swam (if we had them).
+
+8. Clean up resources.
+
+```
+docker service rm myservice
+docker container stop linkednginx nginxpublic
+docker container rm linkednginx nginxpublic
+docker network rm myoverlaynet
+docker swarm leave --force
+```
+
+
 
 
 
