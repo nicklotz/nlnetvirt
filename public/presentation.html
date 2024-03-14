@@ -252,16 +252,50 @@
          </section>
          <section>
              <h2>Hands-On Lab</h2>
-             <p>Customizing the cntrol plane with POX</p>
+             <p>Customizing the control plane with POX</p>
          </section>
          <section>
              <h2>Hands-On Lab</h2>
              <p>Packet-logging wih Mininet and POX</p>
          </section>
          <section>
+             <h1>Virtualization In Practice</h1>
+             <h2>Applications</h2>
+         </section>
+         <section>
+             <h2>Multi-Tenant Datacenters</h2>
+             <small><ul><li>Different groups of users (tenants) have different access, permission, and QOS requirements</li><br/>
+                        <li>Need strict tenant (read: subnet) isolation</li><br/>
+                        <li>Increasing use of microsegmentation at the workload level, plus granular RBAC</li><br/>
+                        <li>Increasing use of containerized workloads (Docker, Kubernetes) for application isolation</li><br/>
+                        <li>Tools like Istio (service mesh) and zero trust networking</li>
+             </ul></small>
+         </section>
+         <section>
              <h2>Hands-On Lab</h2>
              <p>Network virtualization with Docker</p>
          </section>
+         <section>
+             <h2>Brief Overview of Data Plane</h2>
+             <small><ul><li>Synonymous with <strong>forwarding plane</strong> in SDN</li><br/>
+                        <li>Answers "what do we do with this packet that's come in"?</li><br/>
+                        <li>Performs packet processing (encapsulation, decapsulation, error checking) as well as QoS</li><br/>
+                        <li>In traditional networks, tightly coupled with control plane, and often same physical device</li><br/>
+                        <li>In SDN, decoupled and receives programmatic directions from control plane (which direction again?)</li><br/>
+                        <li>A goal of network automation is not needing to directly interact with the data plane</li>
+             </ul></small>
+         </section>
+         <section>
+             <h1>Network Verification</h1>
+         </section>
+         <section>
+             <h2>Configuration Verification</h2>
+             <small><ul><li>Ensuring everything is set up and working as intended</li><br/>
+                        <li>For <strong>data plane</strong>, includes correct forwarding, security policy implementation, and meeting performance benchmarks</li><br/>
+                        <li>For <strong>control plane</strong>, includes correct topology mapping, avoiding configuration drift, and securing the control plane itself</li></br>
+                        <li>Ad hoc tools include wireshark, packet tracers, traffic analyzers</li><br/>
+                        <li>Going forward, start treating networks like software development: config management (e.g. Ansible, Chef) and GitOps workflows to prevent drift</li><br/>
+             </ul></small>
     </div>
 </div>
 
