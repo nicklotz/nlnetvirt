@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal Reveal.js Presentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css" id="theme">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom styling -->
+    <style>
+        /* Custom styles for the presentation */
+        .reveal {
+            background-color: white; /* Set the background color to white */
+            font-family: 'Inter', sans-serif; /* Use Inter as the font */
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            color: darkblue; /* Set the title/heading text color to dark blue */
+            text-transform: none;
+        }
+        .reveal img {
+            max-width: 100%; /* Ensure the image does not exceed the slide width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1><strong>Network Virtualization</strong></h1>
+            <p><strong>Nick Lotz</strong><br/><strong>19 March 2024</strong></p>
+        </section>
+        <section>
+            <h1>OSI model refresher</h1>
+        </section>
+        <section>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Osi-model.png" alt="OSI Model Diagram">
+            <figcaption><small><a href="https://upload.wikimedia.org/wikipedia/commons/2/2b/Osi-model.png">GFDL license</a></small></figcaption>
+        </section>
+        <section>
+            <h2>TCP/IP model</h2>
+            <ul>
+                <li>Simplifies to 4 layers</li>
+                <li>Typical of "real world" networking</li>
+            </ul>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/UDP_encapsulation.svg" alt="TCP model" width="50%" height="50%">
+            <figcaption><small><a href="https://en.wikipedia.org/wiki/Internet_protocol_suite#/media/File:UDP_encapsulation.svg">GFDL license</a></small></figcaption>
+        </section>
+        <section>
+            <h2>TCP layers</h2>
+            <h4>Application layer</h4>
+            <small><ul>
+                <li>Acts as the interface between the end-user and the network</li>
+                <li>Protocols: HTTP(S), FTP, SMTP, DNS</li>
+            </ul></small><br/><br/>
+            <h4>Transport layer</h4>
+            <small><ul>
+                <li>Ensures that data is transferred reliably, in sequence, without erro</li>
+                <li>Protocols: TCP, UDP</li>
+            </ul></small>
+        </section>
+        <section>
+            <h2>TCP layers (cont.)</h2>
+            <h4>Network layer</h4>
+            <small><ul>
+                <li>Concerned mostly with packet forwarding</li>
+                <li>Protocols: IP, ICMP, ARP</li>
+            </ul></small><br/><br/>
+            <h4>Data link layer</h4>
+            <small><ul>
+                <li>Deals with physical transmission of data</li>
+                <li>Protocols: Ethernet, WiFi, PPP</li>
+            </ul></small>
+        </section>
+        <section>
+            <h2>Follow-Along Demo</h2>
+            <p>Python client-server application to demonstrate application, transport, network, link layers</p>
+        </section>
+        <section>
+            <h1>IP Addressing</h1>
+        </section>
+        <section>
+           <h2>IP Addressing: Intro</h2>
+               <ul><li>Mechanism assigning unique ID to each device on a network</li></br>
+                   <li>Addresses then used to route traffic across internet and within local networks</li></br>
+                   <li>Two protocols in use today: IPv4 and IPv6</li>
+               </ul>
+        </section>       
+       <section>
+           <h2>IPv4</h2>
+            <a href="https://en.wikipedia.org/wiki/Internet_Protocol_version_4#/media/File:IPv4_Packet-en.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/IPv4_Packet-en.svg" alt="IPv4 anatomy" height="50%" width="50%"></a><br/>
+            <small><ul><li>32 bits, with each byte separated by a dot (e.g. 192.168.1.1)</li></br>
+               <li>Used to have classes of ranges, now CIDR predominates</li><br/>
+               <li>Static and dynamic addresses</li><br/>
+               <li>Public and private addresses</li>
+            </ul>
+           <p><strong>How many possible IPv4 addresses are there? Is it enough?</strong></p></small>
+       </section>
+       <section>
+           <h2>Network Address Translation (NAT)</h2>
+           <ul><li>Alleviates IPv4 exhaustion</li></br>
+               <li>Multiple devices on private network can share single public IP address</li><br/>
+               <li>Static, dynamic, port address translation</li><br/>
+               <li>Used everywhere in virtualization (think about accessing a VM from outside host)</li>
+           </ul>
+       </section>
+       <section>
+           <h2>CIDR</h2>
+           <small><ul><li>Classless inter-domain routing</li>
+               <li>Uses <strong>subnetting</strong> to be more flexible than previous class-based system</li>
+               <li>Combines multiple IP ranges via <strong>aggregation</strong> - simplifies routing tables</li>
+               <li>Denoted by IP address followed by subnet mask (e.g. 192.168.0.0/24)
+           </ul></small>
+               <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#/media/File:IP_Address_Match.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/IP_Address_Match.svg" alt="IPv4 anatomy" height="50%" width="50%"></a><br/>
+       </section>
+        <section>
+           <h2>Subnetting</h2>
+           <ul><li>Divides large network into smaller logical networks</li></br>
+               <li><strong>Subnet mask</strong> separates network from host component of address</li><br/>
+               <li>Can isolate traffic without needing separate physical network</li><br/>
+               <li>Crucial for multi-tenant architectures</li>
+           </ul>
+        </section>
+        <section>
+            <h2>Exercise</h2>
+            <h3>CIDR calculations</h3>
+        </section>
+        <section>
+          <h2>IPv6</h2>
+          <a href="https://en.wikipedia.org/wiki/File:IPv6_address_terminology-en.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/IPv6_address_terminology-en.svg" alt="ipv6" height="70%" width="70%"></a>
+          <small><ul><li>Developed by the IETF to address the impending exhaustion of IPv4 addresses</li>
+                    <li>128-bit instead of 32-bit, means 2^128 possible addresses</li>
+                    <li>Eight groups of four hex digits</li>
+                    <Sli>Can ommit leading zeroes and use double colons <strong>::</strong> for consecutive zeroes</li>
+                    <li><strong>Unicast</strong>, <strong>multicast</strong>, and <strong>anycast</strong> addresses</li>
+                    <li>IPv6 autoconfiguration</li>
+          <ul></small>
+        </section>
+        <section>
+           <h2>DHCP</h2>
+           <small><ul><li>Dynamic Host Configuration Protocol</li>
+               <li>Server dynamically assigns an IP address to each device on a network</li>
+           </ul></small>
+               <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol#/media/File:DHCP_session.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/DHCP_session.svg" alt="DHCP" height="40%" width="40%"></a>
+        </section>
+        <section>
+            <h2>Follow-Along Demo</h2>
+            <p>Python network addressing simulation</p>
+        </section>
+        <section>
+            <h1>Domain Name System</h1>
+        </section>
+        <section>
+            <h2>Understanding DNS</h2>
+            <small><ul><li>The "phonebook" of the internet</li></br>
+                       <li>Translates human-readable domain name into IP addresses</li><br/>
+                       <li> E.g. www.example.com --> 192.0.2.1 (IPv4) or 2001:db8::2:1 (IPv6)</br>
+            </ul></small>
+            <a href="https://en.wikipedia.org/wiki/Domain_Name_System#/media/File:DNS_Architecture.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/60/DNS_Architecture.svg" alt="DNS" height="90%" width="90%"></a>
+        </section>                       
+        <section>
+            <h2>Demo</h2>
+            <p>AWS Route 53</p>
+        </section>
+        <section>
+            <h1>Inter/Intra Domain Routing</h1>
+        </section>
+        <section>
+            <h2>IGP and BGP</h2>
+            <small><ul><li><strong>Interior Gateway Protocols (IGP) </strong> within a single domain or autonomous system</li><br/>
+                       <li><strong>Border Gateway Protocol</strong> between autonomous systems</li></br>
+                       <li>Ingress/egress vs inboud/outbound</li></br>
+                       <li>Internal routing generally managed via OSPF or IS-IS</li></br>
+                       <li>ISPs use BGP for peering with other ISPs</li><br/>
+                       <li>Both are used in cloud data centers</li>
+            </ul></small>    
+        </section>
+        <section>
+            <h1>Software-Defined Networking</h1>
+        </section>
+        <section>
+            <h2>Intro to SDN</h2>
+            <small><ul><li><strong>Decouples</strong> control plane</strong> from <strong>data plane</strong></li>
+                       <li>Introduces central controller to actively manage network in real time</li>
+                       <li><strong>Northbound</strong> communication between controller and applications via API's</li>
+                       <li><strong>East-west</strong> communication between controllers (e.g. OVSDB)</li>
+                       <li><strong>Southbound</strong> communication between controller and data plane (OpenFlow)</li>
+            </ul></small>
+            <a href="https://en.wikipedia.org/wiki/File:Software_Defined_Networking_System_Overview.svg"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Software_Defined_Networking_System_Overview.svg" alt="SDN" height="50%" width="50%"></a>
+        </section>
+        <section>
+            <h1>OpenFlow</h1>
+        </section>
+        <section>
+            <h2>What is OpenFlow?</h2>
+            <small><ul><li>Primary SDN southbound protocol</li>
+                       <li>"Nervous system" between SDN brain and network devices</li>
+                       <li>Specifies how controller can modify network device flow entries</li>
+                       <li>Challenges: scalability, security, interoperability</li>
+            </ul></small>
+            <img src="openflow.png" alt="openflow" width="50%" height="50%">
+        </section>
+        <section>
+            <h2>Hands-on Lab</h2>
+            <p>Install and configure Mininet</p>
+        </section>
+        <section>
+            <h1>Mininet</h1>
+        </section>
+        <section>
+            <h2>Mininet Topologies</h2>
+            <small><ul><li><strong>Topologies</strong> are the arrangement of network elements (nodes) and the connections between them (links)</li><br/>
+                      <li>In Mininet, defined programatically using Python</li><br/>
+                      <li>OOTB topologies include linear, tree, single</li><br/>
+                      <li>Example: <code>sudo mn --topo linear,3</code></li><br/>
+                      <li>Custom: <code>sudo mn --custom script.py --topo topology_name </code></li><br/>
+                      <li>Helpful Mininet CLI commands for troubleshooting: <code>node</code>, <code>net</code>, <code>dump</code>, <code>link</code></li></ul></small>
+        </section>
+        <section>
+            <h1>Mininet</h1>
+        </section>
+        <section>
+            <h2>Mininet Topologies</h2>
+            <small><ul><li><strong>Topologies</strong> are the arrangement of network elements (nodes) and the connections between them (links)</li><br/>
+                      <li>In Mininet, defined programatically using Python</li><br/>
+                      <li>OOTB topologies include linear, tree, single</li><br/>
+                      <li>Example: <code>sudo mn --topo linear,3</code></li><br/>
+                      <li>Custom: <code>sudo mn --custom <script.py> --topo <topology_name></code></li><br/>
+                      <li>Helpful Mininet CLI commands for troubleshooting: <code>node</code>, <code>net</code>, <code>dump</code>, <code>link</code></li></ul></small>
+        </section>
+        <section>
+            <h2>Follow-Along Demo</h2>
+            <p>Mininet CLI commands</p>
+        </section>
+        <section>
+            <h2>Follow-Along Demo</h2>
+            <p>Writing custom topologies in Python</p>
+        </section>
+        <section>
+            <h1>Routing Control Platforms</h1>
+        </section>
+        <section>
+            <h2>RCPs and ONIX</h2>
+            <small><ul><li>RCPs focus on centralization, abstraction, and programmability</li>
+                       <li><strong>ONIX</strong> is a control platform ideal for <strong>distributed</strong> networking controllers</li><br/>
+                       <li>Uses <strong>NIB</strong> as a distributed datastore to maintain netowrk state</li><br/>
+                       <li>Useful for aggregating multiple virtual networks with customized topologies</li></ul></small>
+                       <a href="https://www.usenix.org/legacy/events/osdi10/tech/full_papers/Koponen.pdf"><img src="onix.png" alt="onix" width="60%" height="60%"></a>
+
+         </section>
+         <section>
+             <h1>4-D Networking</h1>
+         </section>
+         <section>
+             <h2>"The 4 Ds"</h2>
+             <small><ul><li>Simplifying networking to four dimensions to improve manageability</li><br/>
+                        <li><strong>Decision plane:</strong> where centralized control logic resides</li><br/>
+                        <li><strong>Dissemination plane:</strong> distributes Decision-plane's decisions across the network</li><br/>   
+                        <li><strong>Discovery plane:</strong>Ensures network's current state is accurately known and that changes in the network are quickly detected and reported</li><br/>
+                        <li><strong>Data plane:</strong>Operates at network device level, handles actual movement of packets across network</li></ul></small>
+         </section>
+    </div>
+</div>
+
+<!-- Reveal.js library -->
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script>
+    // Initialize Reveal.js
+    Reveal.initialize({
+        // Reveal.js options can be specified here
+        mouseWheel: true,
+    });
+</script>
+</body>
+</html>
+
