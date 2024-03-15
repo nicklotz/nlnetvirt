@@ -31,7 +31,7 @@
     <div class="slides">
         <section>
             <h1><strong>Network Virtualization</strong></h1>
-            <p><strong>Nick Lotz</strong><br/><strong>19 March 2024</strong></p>
+            <p><strong>Nick Lotz</strong><br/><strong>DD MM YYYY</strong></p>
         </section>
         <section>
             <h1>OSI model refresher</h1>
@@ -296,6 +296,30 @@
                         <li>Ad hoc tools include wireshark, packet tracers, traffic analyzers</li><br/>
                         <li>Going forward, start treating networks like software development: config management (e.g. Ansible, Chef) and GitOps workflows to prevent drift</li><br/>
              </ul></small>
+         </section>
+         <section>
+             <h1>Networking in AWS</h1>
+         </section>
+         <section>
+             <h2>AWS VPCs</h2>
+             <small><ul><li><strong>Virtual Private Cloud:</strong> Isolated virutal network for AWS users</li>
+                        <li>Includes its own private IP ranges, routing tables, and access control just for you</li>
+                        <li>API-driven, and programatically defined via CLI, SDK, other AWS services, or third party tools</li>
+             </ul></small>
+             <a href="https://en.wikipedia.org/wiki/Amazon_Virtual_Private_Cloud#/media/File:Amazon_Virtual_Private_Cloud.svg"><img src="vpc.png" alt="vpcwiki" width="30%" height="30%"></a>
+         </section>
+         <section>
+             <h2>Regions and Availability Zones</h2>
+             <small><ul><li><strong>Region:</strong> Physical location where AWS data centers live (e.g. us-east-1)</li>
+                        <li><strong>Availability Zone:</strong> Data center (or cluster of DCs) in a region with redundant connectivity (e.g. us-east-1<strong>a</strong>)</li>
+                        <li>Generally HA between AZs in same region, and DR between regions</li>
+                        <li>AWS services and pricing can differ dramatically between regions</li>
+              </ul></small>
+              <a href="https://aws.amazon.com/vpc/"><img src="https://d1.awsstatic.com/Digital%20Marketing/House/Hero/products/ec2/VPC/Product-Page-Diagram_Amazon-VPC_HIW%402x.f33b1976a62ff4600a1a8fd65e94057b43d9d917.png" alt="awsvpc" width="80%" height="80%"></a>
+         </section>
+         <section>
+             <h1>Thank you!</h1>
+         </section>
     </div>
 </div>
 
