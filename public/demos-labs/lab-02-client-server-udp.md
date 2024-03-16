@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
 3. Save and close server_udp.py.
 
-4. Test the server application. The output should read "Server is listening on <IP>:<Port>".
+4. Test the server application. The output should read `Server is listening on <IP>:<Port>`.
 
 ```
 python3 server_udp.py
@@ -136,3 +136,45 @@ python3 client_udp.py
 8. Enter any message when prompted. Why don't we see a connection attempt before the message prompt like in the previous lab's client application?
 
 9. Press **Return** to send the message, then wait a couple seconds. Was the transmission successful? Why or why not?
+
+## C. Run the client-server application
+
+1. In one terminal window, run the server application.
+
+```
+python3 server_udp.py
+```
+
+2. In a *second* terminal window, run the client application.
+
+```
+python3 client_udp.py
+```
+
+3. Type **Return** to accept the default server IP. Then type **Return** to accept the default port. 
+
+4. Enter your first name when prompted, then type **Return**.
+
+5. Enter some text in the message prompt, followed by **Return**. Repeat once or twice more.```
+
+6. Navigate back to the server shell. What output do you see?
+
+7. Open a *third* terminal window. Run `python3 client.py` to run a second client instance.
+
+8. Press **Return** twice to accept the default server IP and port. 
+
+9. When prompted for a username, enter a different name here (doesn't matter what, could be made up).
+
+10. When prompted to enter a message, enter whatever you'd like and press **Return**. Repeat once or twice more.
+
+11. Navigate back to the server shell. What do you see? Why don't we see an active connection count?
+
+12. Alternate sending messages from both clients a few times. How does that appear in the server log?
+
+13. From the server shell, type `CTRL-C` twice to kill the server.
+
+14. Navigate back to the clients. What message do you see, if any?
+
+15. Try sending another message from one of the clients. What response is shown?
+
+16. Type `exit` from each client to close both programs.
