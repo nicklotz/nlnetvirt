@@ -10,7 +10,7 @@
 touch server.py
 ```
 
-1. Open server.py and paste the following code.
+2. Open server.py and paste the following code.
 
 ```python
 import socket
@@ -20,14 +20,11 @@ import json
 import time
 
 def print_decoded(message):
-    # Decode the JSON-encoded message received from the client
     message_obj = json.loads(message.decode())
     decoded_message = base64.b64decode(message_obj['message']).decode()
-    # Print the message with sender's username and timestamp
     print(f"[{message_obj['username']} @ {time.ctime(message_obj['timestamp'])}]: {decoded_message}")
 
 def handle_exception(err):
-    # Handle specific exceptions and return True if a break from the loop is needed
     if isinstance(err, ConnectionResetError):
         print("Connection reset error occurred")
         return True
@@ -40,31 +37,22 @@ def handle_exception(err):
     return False
 
 def handle_client(client_socket):
-    # This function runs in a separate thread for each client
     while True:
         try:
-            # Blocking call to receive data from the client
             message = client_socket.recv(1024)
             if not message:
                 break  # If no message, exit the loop
-
             print_decoded(message)
-
         except (ConnectionResetError, json.JSONDecodeError, base64.binascii.Error) as err:
             if handle_exception(err):
                 break  # Exit the loop if an exception handler returned True
-
     client_socket.close()  # Close the client socket when done
 
 def manage_client_connection(server_socket):
-    # Accept a new connection from a client
     client_socket, addr = server_socket.accept()
     print(f"Accepted connection from {addr}")
-
-    # Create and start a new thread to handle the client
     client_thread = threading.Thread(target=handle_client, args=(client_socket,))
     client_thread.start()
-
     print(f"Active connections: {threading.active_count() - 1}")
 
 def start_server(host='127.0.0.1', port=65432):
@@ -75,7 +63,6 @@ def start_server(host='127.0.0.1', port=65432):
     # Listen for incoming connections
     server_socket.listen()
     print(f"Server is listening on {host}:{port}")
-
     while True:
         # Wait and accept new client connections
         manage_client_connection(server_socket)
@@ -108,59 +95,40 @@ import json
 import time
 
 def send_messages(client_socket, username):
-    # This function allows the user to send messages to the server
-    while True:
         message = input("Enter message: ")
         if message.lower() == 'exit':
             break  # Exit loop to stop sending messages
-
-        # Prepare the message with a timestamp, username, and encode the message content in Base64
         message_obj = {
             "username": username,
             "timestamp": time.time(),
             "message": base64.b64encode(message.encode()).decode()
         }
-
-        # Convert the message object to a JSON string and send it to the server
         json_message = json.dumps(message_obj)
-        client_socket.sendall(json_message.encode())  # TCP ensures the message is sent reliably
+        client_socket.sendall(json_message.encode())
 
 def receive_messages(client_socket):
-    # Function to receive messages from the server
     while True:
         try:
-            # Blocking call to wait for messages from the server
             message = client_socket.recv(1024)
             if not message:
                 print("Disconnected from the server")
                 break  # Exit loop if disconnected
-
             print(f"Received: {message.decode()}")
-
         except:
             print("Disconnected from the server.")
             client_socket.close()
             break  # Exit loop on exception
 
 def start_client(host, port, username):
-    # Create a TCP socket
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    # Connect to the server
     client_socket.connect((host, port))
     print(f"Connected to the server at {host}:{port}")
-
-    # Start a thread to listen for messages from the server
     thread = threading.Thread(target=receive_messages, args=(client_socket,))
     thread.start()
-
-    # Main loop for sending messages
     send_messages(client_socket, username)
-
     client_socket.close()  # Close the socket when done
 
 def get_user_data():
-    # Collect user input for connection details and username
     print("Welcome to the Chat Application!")
     host = input("Enter the server address (default: 127.0.0.1): ").strip() or "127.0.0.1"
     port = int(input("Enter the server port (default: 65432): ").strip() or 65432)
