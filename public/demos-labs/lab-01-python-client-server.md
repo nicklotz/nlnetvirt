@@ -1,6 +1,6 @@
 # Lab 1: Client-Server Application in Python
 
-**Note:** the Python labs in this clas assume Python 3. 
+**Note:** the Python labs in this class assume Python 3. 
 
 ## A. Write the server application
 
@@ -56,24 +56,20 @@ def manage_client_connection(server_socket):
     print(f"Active connections: {threading.active_count() - 1}")
 
 def start_server(host='127.0.0.1', port=65432):
-    # Create a TCP socket
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Bind the socket to the host and port
     server_socket.bind((host, port))
-    # Listen for incoming connections
     server_socket.listen()
     print(f"Server is listening on {host}:{port}")
     while True:
-        # Wait and accept new client connections
         manage_client_connection(server_socket)
 
 if __name__ == "__main__":
     start_server()
 ```
 
-1. Save and close server.py.
+3. Save and close server.py.
 
-1. Run the server and test that it is listening.
+4. Run the server and test that it is listening.
 
 ```
 python3 server.py
@@ -81,11 +77,17 @@ python3 server.py
 
 The output should look read similar to: `The server is listening on <IP>:<Port>`.
 
-1. Type `CTRL-C` to exit the program.
+5. Type `CTRL-C` to exit the program.
 
-## Write the client application
+## B. Write the client application
 
-1. 1. In a terminal shell (or on your desktop), create a file called **client.py**.
+1. In a terminal shell (or on your desktop), create a file called **client.py**.
+
+```
+touch client.py
+```
+
+2. Open client.py and paste the following code.
 
 ```python
 import socket
@@ -144,9 +146,9 @@ if __name__ == "__main__":
         print(f"Failed to connect to the server at {host}:{port}. Please check the server status and try again.")
 ```
 
-1. Save and close client.py.
+3. Save and close client.py.
 
-1. Test the client.
+4. Test the client.
 
 ```
 python3 client.py
@@ -154,6 +156,6 @@ python3 client.py
 
 The output should begin with `Welcome to Chat Application!` followed by a prompt.
 
-1. Type `CTRL-C` to exit the program.
+5. Type `CTRL-C` to exit the program.
 
 ## Run the server and client together
