@@ -174,7 +174,7 @@ python3 client.py
 
 3. From the client application, when prompted for the server address, type **Return** to accept the default server IP.
 
-4. From the client application, when prompted for the server port, type `12345`, then **Return*.
+4. From the client application, when prompted for the server port, type `12345`, then **Return**.
 
 5. When prompted for a username, type your first name, then **Return**.
 
@@ -207,5 +207,3 @@ python3 client.py
 19. Navigate back to the clients. What message do you see?
 
 20. Type `exit` from each client to close both programs.
-
-16. 
