@@ -158,4 +158,54 @@ The output should begin with `Welcome to Chat Application!` followed by a prompt
 
 5. Type `CTRL-C` to exit the program.
 
-## Run the server and client together
+## C. Run the server and client together
+
+1. In one terminal window, run the server application.
+
+```
+python3 server.py
+```
+
+2. In a *second* terminal window, run the client application.
+
+```
+python3 client.py
+```
+
+3. From the client application, when prompted for the server address, type **Return** to accept the default server IP.
+
+4. From the client application, when prompted for the server port, type `12345`, then **Return*.
+
+5. When prompted for a username, type your first name, then **Return**.
+
+6. Note the connection error. Run `python3 client.py` to run the client program again.
+
+7. Type **Return** to accept the default server IP. Then type **Return** to accept the default port. 
+
+8. Enter your first name when prompted, then type **Return**.
+
+9. Navigate to the shell where you have server.py running. What do you see in the output?
+
+10. Navigate back to the shell where you have client.py running. Enter some text in the message prompt, followed by **Return**. Repeat once or twice more.
+
+11. Navigate back to the server shell. What do you see in the output?
+
+12. Open a *third* terminal window. Run `python3 client.py` to run a second client instance.
+
+13. Press **Return** twice to accept the default server IP and port. 
+
+14. When prompted for a username, enter a different name here (doesn't matter what, could be made up).
+
+15. When prompted to enter a message, enter whatever you'd like and press **Return**. Repeat once or twice more.
+
+16. Navigate back to the server shell. What do you see?
+
+17. Alternate sending messages from both clients a few times. How does that appear in the server log?
+
+18. From the server shell, type `CTRL-C` twice to kill the server.
+
+19. Navigate back to the clients. What message do you see?
+
+20. Type `exit` from each client to close both programs.
+
+16. 
