@@ -49,7 +49,7 @@ sudo apt update
 sudo apt install -y vagrant
 ```
 
-##. C. Configure a virtual machine to host mininet
+## C. Configure a virtual machine to host mininet
 
 1. Create a directory to host your VM configuration.
 
@@ -69,15 +69,15 @@ cd ~/mininet-vm
 vagrant init ubuntu/jammy64
 ```
 
-4. Modify the **Vagrantfile** created by the previous command. Add the following configuration block, to the file (just choose somewhere among the rest of the commented lines). Make sure the indentation is conssitent with the surrounding lines.
+4. Modify the **Vagrantfile** created by the previous command. Add the following configuration text to the file (just choose somewhere among the rest of the commented lines). Make sure the indentation is consistent with the surrounding lines.
 
 ```
-    # ... some commented-out lines above
-    config.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
-      vb.cpus = 2
-    end
-    # ... some commented-out lines below
+  # ... some commented-out lines above
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.cpus = 2
+  end
+  # ... some commented-out lines below
 ```
 
 5. Bring up the new VM.
@@ -119,7 +119,7 @@ git checkout -b mininet-2.3.1b4 2.3.1b4
 4. Navigate back out of the source directory.
 
 ```
-cd . .
+cd ..
 ```
 
 5. Install mininet and its supporting tools (OpenFlow, POX). Installation can take a few minutes. This is a good opportuity to grab a snack.
@@ -132,4 +132,10 @@ mininet/util/install.sh -a
 
 ```
 sudo mn --test pingall
+```
+
+7. List directory contents to see what's been installed alongside mininet.
+
+```
+ls -l
 ```
