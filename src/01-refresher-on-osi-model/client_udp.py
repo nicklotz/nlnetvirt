@@ -3,27 +3,38 @@ import base64
 import json
 import time
 
+def compose_message(username, message):
+    return {
+        "username": username,
+        "timestamp": time.time(),
+        "message": base64.b64encode(message.encode()).decode()
+    }
+
+def transmit_and_wait_ack(client_socket, server_address, message_obj):
+    json_message = json.dumps(message_obj)
+    client_socket.sendto(json_message.encode(), server_address)
+    try:
+        client_socket.settimeout(2.0)
+        ack_message, _ = client_socket.recvfrom(1024)
+        ack_obj = json.loads(ack_message.decode())
+        if ack_obj.get("status") == "Received":
+            print("Server acknowledged receipt of the message.")
+        else:
+            print("Received unknown acknowledgment from the server.")
+    except socket.timeout:
+        print("Timed out waiting for acknowledgment from the server.")
+    finally:
+        client_socket.settimeout(None)
+
 def send_messages(client_socket, server_address, username):
     while True:
         message = input("Enter message: ")
         if message.lower() == 'exit':
-            # Exit the loop if the user types 'exit'
             break
-
-        # Create a message object with the current timestamp, username, and the base64 encoded message
-        message_obj = {
-            "username": username,
-            "timestamp": time.time(),
-            "message": base64.b64encode(message.encode()).decode()
-        }
-
-        # Convert the message object to JSON and send it to the server
-        json_message = json.dumps(message_obj)
-        # Use sendto to send the message to the server's address
-        client_socket.sendto(json_message.encode(), server_address)
+        message_obj = compose_message(username, message)
+        transmit_and_wait_ack(client_socket, server_address, message_obj)
 
 def get_user_data():
-    # Collect user input for server address, port, and username
     print("Welcome to the UDP Chat Application!")
     host_input = input("Enter the server address (default: 127.0.0.1): ")
     host = host_input.strip() if host_input.strip() else "127.0.0.1"
@@ -35,15 +46,10 @@ def get_user_data():
 if __name__ == "__main__":
     username, host, port = get_user_data()
     server_address = (host, port)
-    print(f"Connecting to {host}:{port} as {username}...")
-
-    # Create a UDP socket for the client
+    print(f"Ready to send messages to {host}:{port} as {username}.")
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
     try:
-        # Start sending messages to the server
         send_messages(client_socket, server_address, username)
     finally:
-        # Ensure the socket is closed properly when the program is done
         client_socket.close()
 

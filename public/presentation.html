@@ -34,14 +34,14 @@
             <p><strong>Nick Lotz</strong><br/><strong>DD MM YYYY</strong></p>
         </section>
         <section>
-            <h1>OSI model refresher</h1>
+            <h1>OSI Model Refresher</h1>
         </section>
         <section>
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Osi-model.png" alt="OSI Model Diagram">
             <figcaption><small><a href="https://upload.wikimedia.org/wikipedia/commons/2/2b/Osi-model.png">GFDL license</a></small></figcaption>
         </section>
         <section>
-            <h2>TCP/IP model</h2>
+            <h2>TCP/IP Model</h2>
             <ul>
                 <li>Simplifies to 4 layers</li>
                 <li>Typical of "real world" networking</li>
@@ -50,7 +50,7 @@
             <figcaption><small><a href="https://en.wikipedia.org/wiki/Internet_protocol_suite#/media/File:UDP_encapsulation.svg">GFDL license</a></small></figcaption>
         </section>
         <section>
-            <h2>TCP layers</h2>
+            <h2>TCP Layers</h2>
             <h4>Application layer</h4>
             <small><ul>
                 <li>Acts as the interface between the end-user and the network</li>
@@ -63,7 +63,7 @@
             </ul></small>
         </section>
         <section>
-            <h2>TCP layers (cont.)</h2>
+            <h2>TCP Layers (Cont.)</h2>
             <h4>Network layer</h4>
             <small><ul>
                 <li>Concerned mostly with packet forwarding</li>
@@ -78,6 +78,11 @@
         <section>
             <h2><a href="https://github.com/nicklotz/nlnetvirt/blob/main/public/demos-labs/lab-01-python-client-server.md">Lab 01</a></h2>
             <p>Client-server application in Python</p>
+            <p>15 minutes</p>
+        </section>
+        <section>
+            <h2><a href="https://github.com/nicklotz/nlnetvirt/blob/main/public/demos-labs/lab-02-client-server-udp.md">Lab 02</a></h2>
+            <p>UDP client-server application</p>
             <p>15 minutes</p>
         </section>
         <section>
@@ -126,8 +131,56 @@
            </ul>
         </section>
         <section>
-            <h2>Exercise</h2>
+            <h2>Exercises</h2>
             <h3>CIDR calculations</h3>
+        </section>
+        <section>
+            <h2>CIDR Exercise 1</h2>
+            <h3>CIDR block calculation</h3>
+            <p>Given the CIDR block <strong>192.168.1.0/24</strong>, calculate the following:</p><br/>
+            <ul><li>The subnet mask</li></br>
+                <li>The number of usable IP addresses</li><br/>
+                <li>The range of IP addresses within the block</li></ul>
+        </section>
+        <section>
+            <h2>Answers to CIDR Exercise 1</h2>    
+            <ul><li>Subnet mask: <strong>255.255.255.0</strong></li><br/>
+                <li>Usable IP addresses: <strong>254</strong> <br/>(256 total addresses minus 2 for the network and broadcast addresses)</li><br/>
+                <li>Range of IP addresses: <strong>192.168.1.1</strong> to <strong>192.168.1.254</strong></li></ul>
+        </section>
+        <section>
+            <h2>CIDR Exercise 2</h2>
+            <h3>Subnetting with CIDR</h3>
+            <p align = "left">Given a requirement to create four subnets each supporting at least 50 devices, determine the appropriate subnet size and CIDR notation for these subnets if you are starting with a fresh allocation. Assume you are working within a 192.168.0.0 network.</p>
+        </section>
+        <section>
+            <h2>Answer to CIDR Exercise 2</h2>
+            <small><p>2^6 = 64 and 2^5 = 32</p>
+            <p>So for 50 hosts per subnet we need at least <strong>6 bits</strong> for host addresses</p>
+            <p>IP addresses are 32 bits, the host portion is 6 bits, so the subnet mask is <strong>26 bits</strong></p><br/>
+            <p>There can be <strong>four</strong> 8-bit ranges in an 8-bit octet</p><br/>
+            <p>The subnets therefore are:</p>
+            <p>Subnet 1: 192.168.0.0/26</p>
+            <p>Subnet 2: 192.168.0.64/26</p>
+            <p>Subnet 3: 192.168.0.128/26</p>
+            <p>Subnet 4: 192.168.0.192/26</p></small>
+        </section>
+        <section>
+            <h2>CIDR Exercise 3</h2>
+            <h3>CIDR Aggregation</h3>
+            <small><p align="left">Assume you have the following IP address ranges that need to be aggregated into a single CIDR block:</p>
+            <ul><li>192.168.1.0/24</li>
+                <li>192.168.2.0/24</li>
+                <li>192.168.3.0/24</li></ul><br/><br/>
+            <p align="left">All addresses use a subnet mask of 255.255.255.0.</p><br/>
+            <p align="left">What is the <strong>smallest</strong> single CIDR block that can encompass all these addresses?</strong></p></small>
+        </section>
+        <section>
+            <h2>Answer to CIDR Exercise 3</h2>
+            <small><p>We need to hold addresses from 192.168.<strong>1</strong>.0 to 192.168.<strong>3</strong>.255</p></br>
+            <p>In binary, that's 192.168.00000001.x, 192.168.00000010.x, and 192.168.00000011.x</p><br/>
+            <p>That's 10 bits worth of host addresses, so the subnet mask is 32 bits - 10 bits = 22 bits</p><br/>
+            <p>The CIDR block is therefore 192.168.0.0/22</p></small>
         </section>
         <section>
           <h2>IPv6</h2>
@@ -202,7 +255,7 @@
                        <li>Specifies how controller can modify network device flow entries</li>
                        <li>Challenges: scalability, security, interoperability</li>
             </ul></small>
-            <img src="openflow.png" alt="openflow" width="50%" height="50%">
+            <a href="https://commons.wikimedia.org/wiki/File:OpenFlow-network-architecture.svg"><img src="../src/static/openflow.png" alt="openflow" width="50%" height="50%"></a>
         </section>
         <section>
             <h2>Hands-on Lab</h2>
@@ -237,7 +290,7 @@
                        <li><strong>ONIX</strong> is a control platform ideal for <strong>distributed</strong> networking controllers</li><br/>
                        <li>Uses <strong>NIB</strong> as a distributed datastore to maintain netowrk state</li><br/>
                        <li>Useful for aggregating multiple virtual networks with customized topologies</li></ul></small>
-                       <a href="https://www.usenix.org/legacy/events/osdi10/tech/full_papers/Koponen.pdf"><img src="onix.png" alt="onix" width="60%" height="60%"></a>
+                       <a href="https://www.usenix.org/legacy/events/osdi10/tech/full_papers/Koponen.pdf"><img src="../src/static/onix.png" alt="onix" width="60%" height="60%"></a>
 
          </section>
          <section>
@@ -307,7 +360,7 @@
                         <li>Includes its own private IP ranges, routing tables, and access control just for you</li>
                         <li>API-driven, and programatically defined via CLI, SDK, other AWS services, or third party tools</li>
              </ul></small>
-             <a href="https://en.wikipedia.org/wiki/Amazon_Virtual_Private_Cloud#/media/File:Amazon_Virtual_Private_Cloud.svg"><img src="vpc.png" alt="vpcwiki" width="30%" height="30%"></a>
+             <a href="https://en.wikipedia.org/wiki/Amazon_Virtual_Private_Cloud#/media/File:Amazon_Virtual_Private_Cloud.svg"><img src="../src/static/vpc.png" alt="vpcwiki" width="30%" height="30%"></a>
          </section>
          <section>
              <h2>Regions and Availability Zones</h2>
