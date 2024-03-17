@@ -159,7 +159,7 @@ chmod +x ipdemo.py
 
 4. How many smaller subnets can we divide 10.0.0.0/8 into if we divide into subnets we a new mask length of 24 bits? How many hosts can each subnet hold? (Hint: `./ipdemo.py subnets 10.0.0.0/8 24`.
 
-## D. Generate an IPv6 addresses within a subnet
+## D. Generate an IPv6 address within a subnet
 
 1. Generate an IPv6 address from the 123:abcd:456::/64 network.
 
@@ -171,7 +171,7 @@ chmod +x ipdemo.py
 
 ```
 ./ipdemo.py ipv6 123:abcd:456::/32
-``
+```
 
 3. If you modify the input so that the network if 123:abcd::/32, would you stil get an error? Why or why not?
 
