@@ -197,7 +197,7 @@ chmod +x ipdemo.py
 
 ```
 ./ipdemo.py route 192.168.1.10
-``
+```
 
 2. Determine the next hop for the IP address **10.100.4.50**.
 
