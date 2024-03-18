@@ -164,7 +164,7 @@ if __name__ == '__main__':
 4. Make the program executable.
 
 ```
-chomd +x customtopology.py
+chmod +x customtopology.py
 ```
 
 5. View the program's usage instructions.
@@ -230,7 +230,14 @@ pected.
 14. Check the flow entries for switch **s1**. What do you see that might indicate what the issue is?
 
 ```
-sh ovs-ofctl dump-flows 1
+sh ovs-ofctl dump-flows s1
 ```
 
 What component do you think is responsible for the switch's flow entries? We'll learn more later about how this configuration takes place.
+
+15. Clean up your mininet topology.
+
+```
+quit
+sudo mn -c
+```
