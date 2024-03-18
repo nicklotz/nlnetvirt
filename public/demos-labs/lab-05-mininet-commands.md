@@ -53,7 +53,7 @@ iperf
 dump
 ```
 
-## B. Commands for individual notes
+## B. Commands for individual nodes
 
 1. Examine the virtual network interface for host 1. What can you identify about the virtual network it lives on?
 
