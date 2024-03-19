@@ -28,6 +28,7 @@ The **--mac** option sets MAC addresses automatically, **--switch** ovsk specifi
 
 ```
 cd ~/pox/
+```
 
 2. Start the POX controller with a simple forwarding module:
 
