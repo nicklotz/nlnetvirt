@@ -10,7 +10,10 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 ```
 
 2. Run the Docker install script.  
+
+```
 sh get-docker.sh
+```
 
 3. Set permissions so you can run Docker without sudo.
 
