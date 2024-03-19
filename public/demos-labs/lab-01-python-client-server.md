@@ -97,6 +97,7 @@ import json
 import time
 
 def send_messages(client_socket, username):
+    while True:
         message = input("Enter message: ")
         if message.lower() == 'exit':
             break  # Exit loop to stop sending messages
