@@ -28,7 +28,7 @@ cd ~/pox/pox/misc
 ```
 touch packetlogger.py
 ```
-4. Paste the following into packet_logger.py:
+4. Paste the following into packetlogger.py:
 
 ```python
 from pox.core import core
@@ -72,7 +72,7 @@ def launch():
     core.openflow.addListenerByName("ConnectionUp", start_switch)
 ```
 
-5. Save and close packetlogging.py.
+5. Save and close packetlogger.py.
 
 ## B. Run the packet logging POX module
 
@@ -85,7 +85,7 @@ cd ~/pox
 2. Run the simple controller along with your packer logging module.
 
 ```
-./pox.py forwarding.l2_learning misc.packet_logger
+./pox.py forwarding.l2_learning misc.packetlogger
 ```
 
 3. Open up a different terminal screen and run a simple mininet topology.
@@ -106,16 +106,16 @@ h3 ping h4
 h4 ping h2
 ```
 
-and so on. Let each ping run for several seconds. Why does the controller only log the first few pings? (Hint: what do the switches do when the ping starts?)
+and so on. Let each ping run for several seconds. Navigate to the terminal screen where you are running the POX controller. Why does the controller only log the first few pings? (**Hint:** what do the switches do when the ping starts?)
 
-5. Try pinging between switches, for example 
+5. Try pinging between switches.
 
 ```
 h1 ping s1
 s1 ping s2
 ```
 
-Do you see any logging by the controller? Why or why not? (Hint: do switches have IP addresses?)
+Do you see any logging by the controller? Why or why not? (**Hint:** do switches generally have IP addresses?)
 
 ##. C. Cleanup
 
