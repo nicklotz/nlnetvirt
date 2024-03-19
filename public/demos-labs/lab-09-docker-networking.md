@@ -1,4 +1,4 @@
-# Lab: Networking in Docker
+# Lab 09: Networking in Docker
 
 ## A. Prerequisites
 ### Install Docker (if not already)
