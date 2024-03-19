@@ -58,7 +58,7 @@ cd ~/pox/
 
 This command starts POX and loads the l2_learning modul. It implements a basic learning switch that mimics the behavior of a physical switch by learning the source MAC addresses of packets and forwarding them accordingly.
 
-3. Relaunch mininet with the same topology as earlier.
+3. Back in your *first* terminal window, relaunch mininet with the same topology as earlier.
 
 ```
 sudo mn --topo single,3 --mac --switch ovsk --controller remote
@@ -149,7 +149,13 @@ def launch():
 
 ```
 
-5. Save and close firewall.py.
+5. Save and close firewall.py.i
+
+6. Navigate back to the root **pox** directory.
+
+```
+cd ~/pox
+```
 
 ## D. Update POX and test the firewall module
 
