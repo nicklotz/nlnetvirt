@@ -1,4 +1,4 @@
-# Lab: Customizing the Control Plane Using POX
+# Lab 07: Customizing the Control Plane Using POX
 
 ## A. Setup and initial test
 
