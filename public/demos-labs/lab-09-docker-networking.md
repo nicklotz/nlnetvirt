@@ -56,6 +56,8 @@ docker network inspect mybridgenet
 ```
 NGINX1_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx1`
 NGINX2_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx2`
+```
+```
 echo "IP address of nginx1 is $NGINX1_IP"
 echo "IP address of nginx2 is $NGINX2_IP"
 ```
@@ -139,6 +141,8 @@ docker run -d --name linkednginx --link nginxpublic:nginxpub nginx
 
 ```
 NGINXPUB_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginxpublic`
+```
+```
 docker exec linkednginx curl http://$NGINXPUB_IP
 ```
 
