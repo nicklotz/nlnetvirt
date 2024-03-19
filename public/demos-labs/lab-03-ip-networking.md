@@ -217,7 +217,7 @@ chmod +x ipdemo.py
 cat ipdemo.py
 ```
 
-5. What can you modify in ipdemo.py so that step E.3 gives you a next hop? There may be more than one answer. Feel free to ask a classmate or you instructor for assistance. 
+5. What can you modify in ipdemo.py so that step E.3 gives you a next hop? There may be more than one answer. Feel free to ask around for assistence!
 
 6. Run the command again after modifying ipdemo.py.
 
@@ -245,7 +245,7 @@ cat ipdemo.py
 cat ipdemo.py
 ```
 
-4. **CHALLENGE:** How can you modify ipdemo.py so that 192.168.1.11 also translates to the external IP 203.0.113.5? What about any host on the 192.168.1.0/24 network? Feel free to work together with a classmate on this!
+4. **CHALLENGE:** How can you modify ipdemo.py so that 192.168.1.11 also translates to the external IP 203.0.113.5? What about any host on the 192.168.1.0/24 network? Feel free to consult with a friend on this!
 
 ## G. DHCP IP assignment
 

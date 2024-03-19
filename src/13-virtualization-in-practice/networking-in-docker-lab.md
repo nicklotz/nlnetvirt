@@ -27,8 +27,6 @@ sudo usermod -aG docker $USER
 docker run hello-world
 ```
 
-Let your instructor know if you get a permissions error and/or are unable to run Docker without sudo.
-
 ## B. Create and use a Docker network
 
 1. Create a custom bridge network. These are isolated on a single host.
