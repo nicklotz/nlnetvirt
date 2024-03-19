@@ -1,6 +1,6 @@
 # Lab: Customizing the Control Plane Using POX
 
-## A. Setup
+## A. Setup and initial test
 
 1. Connect to your Vagrant Mininet VM if not already there.
 
@@ -22,6 +22,24 @@ sudo mn --topo single,3 --mac --switch ovsk --controller remote
 
 The **--mac** option sets MAC addresses automatically, **--switch** ovsk specifies the use of the Open vSwitch kernel switch, and **--controller remote** tells Mininet to use a remote controller, which will be our POX controller.
 
+4. Test the mininet network communication. Can hosts communicate with each other? Why or why not?
+
+```
+pingall
+```
+```
+iperf
+```
+
+5. Exit mininet for now.
+
+```
+quit
+```
+```
+sudo mn -c
+```
+
 ## B. Launch the POX controller
 
 1. Open a *second* terminal window and navigate to the POX directory. 
@@ -38,21 +56,38 @@ cd ~/pox/
 
 This command starts POX and loads the l2_learning modul. It implements a basic learning switch that mimics the behavior of a physical switch by learning the source MAC addresses of packets and forwarding them accordingly.
 
+3. Relaunch mininet with the same topology as earlier.
+
+```
+sudo mn --topo single,3 --mac --switch ovsk --controller remote
+```
+
+4. Test the mininet network's communication. Is it successful this time?
+
+```
+pingall
+```
+```
+iperf
+```
+
 ## C. Create a Simple Firewall
 
-1. Navigate to the POX forwarding modules directory.
+1. In your *second* terminal window, run `CTRL-C` to kill the POX server for now.
+
+2. Navigate to the POX forwarding modules directory.
 
 ```
 cd ~/pox/pox/forwarding
 ```
 
-2. Create a new Python script in the **pox/pox/forwarding** directory named **firewall.py**. This script will define firewall rules to block traffic between specific hosts.
+3. Create a new Python script in the **pox/pox/forwarding** directory named **firewall.py**. This script will define firewall rules to block traffic between specific hosts.
 
 ```
 touch ~/pox/pox/forwarding/firewall.py
 ```
 
-3. Open **firewall.py** and paste the following code.
+4. Open **firewall.py** and paste the following code.
 
 ```python
 from pox.core import core
@@ -112,48 +147,42 @@ def launch():
 
 ```
 
-4. Save and close firewall.py.
+5. Save and close firewall.py.
 
 ## D. Update POX and test the firewall module
 
-1. Restart POX with your firewall module instead of the l2_learning module
+1. In your *second* terminal winow, restart POX with your firewall module instead of the l2_learning module
 
 ```
 ./pox.py forwarding.firewall
 ```
 
-3. Enter the mininet CLI
-
-```
-sudo mn
-```
-
-4. Try pinging h3 from h2. Would you expect these pings to work? Why or why not?
+2. Back in your *first terminal window*, try pinging h3 from h2. Would you expect these pings to work? Why or why not?
 
 ```
 h2 ping -c 4 h3
 ```
 
-5. Try pinging h2 from h1. Would you expect these pings to work? Why or why not?
+3. Try pinging h2 from h1. Would you expect these pings to work? Why or why not?
 
 ```
 h1 ping -c 4 h2
 ```
 
-6. Try pinging h1 from h2. Would you expect these pings to work? Why or why not?
+4. Try pinging h1 from h2. Would you expect these pings to work? Why or why not?
 
 
 ```
 h2 ping -c 4 h1
 ```
 
-7. Run pingall to see a summary of what is blocked by your firewall. How might you change your module's code to block *any* ICMP traffic to h2?
+5. Run pingall to see a summary of what is blocked by your firewall. How might you change your module's code to block *any* ICMP traffic to h2?
 
 ```
 pingall
 ```
 
-8. Exit Mininet and clean up.
+6. Exit Mininet and clean up.
 
 ```
 quit
