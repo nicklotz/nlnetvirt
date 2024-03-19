@@ -6,6 +6,8 @@
 
 ```
 cd ~/mininet-vm
+```
+```
 vagrant ssh
 ```
 
@@ -169,22 +171,18 @@ h2 ping -c 4 h3
 h1 ping -c 4 h2
 ```
 
-4. Try pinging h1 from h2. Would you expect these pings to work? Why or why not?
+4. Try pinging h1 from h2. Would you expect these pings to work? Why or why not? The answer isn't obvious! Think about how ICMP pings work, and look at the code to your firewall module.
 
 
 ```
 h2 ping -c 4 h1
 ```
 
-5. Run pingall to see a summary of what is blocked by your firewall. How might you change your module's code to block *any* ICMP traffic to h2?
-
-```
-pingall
-```
-
-6. Exit Mininet and clean up.
+5. Exit Mininet and clean up.
 
 ```
 quit
+```
+```
 sudo mn -c
 ```
