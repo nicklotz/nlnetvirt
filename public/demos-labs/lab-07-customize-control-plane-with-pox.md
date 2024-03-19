@@ -109,7 +109,6 @@ class SimpleFirewall(object):
         if not packet.parsed:
             log.warning("Ignoring incomplete packet")
             return
-
         self.process_packet(event)
 
     def process_packet(self, event):
@@ -117,24 +116,19 @@ class SimpleFirewall(object):
         if ip_packet:
             if self.is_blocked(ip_packet):
                 log.debug("Blocking packet from %s to %s", ip_packet.srcip, ip_packet.dstip)
-                return  # Drop the packet by not forwarding
+                return 
             else:
                 self.forward_packet(event)
         else:
-            # Forward non-IP packets
             self.forward_packet(event)
 
     def is_blocked(self, ip_packet):
-        # Define the blocking condition for ICMP packets from H1 to H2
         icmp_packet = ip_packet.find('icmp')
         src_ip = ip_packet.srcip
         dst_ip = ip_packet.dstip
-
-        # Return True to block, False to allow
         return src_ip == IPAddr("10.0.0.1") and dst_ip == IPAddr("10.0.0.2") and icmp_packet is not None
 
     def forward_packet(self, event):
-        # Forward the packet out of all ports
         msg = of.ofp_packet_out()
         msg.data = event.ofp
         action = of.ofp_action_output(port=of.OFPP_ALL)
@@ -149,7 +143,7 @@ def launch():
 
 ```
 
-5. Save and close firewall.py.i
+5. Save and close firewall.py.
 
 6. Navigate back to the root **pox** directory.
 
