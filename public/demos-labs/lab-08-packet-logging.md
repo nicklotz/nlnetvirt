@@ -117,7 +117,7 @@ s1 ping s2
 
 Do you see any logging by the controller? Why or why not? (**Hint:** do switches generally have IP addresses?)
 
-##. C. Cleanup
+## C. Cleanup
 
 1. In the terminal running the POX controller, type `CTRL-C` to kill the POX server.
 
