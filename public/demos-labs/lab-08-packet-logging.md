@@ -115,7 +115,7 @@ h1 ping s1
 s1 ping s2
 ```
 
-Do you see any logging by the controller? Why or why not? (**Hint:** do switches generally have IP addresses?)
+Do you see any logging by the controller? Why or why not?
 
 ## C. Cleanup
 
